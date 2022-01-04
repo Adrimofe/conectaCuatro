@@ -1,7 +1,7 @@
 :root {
     --fuenteHeading: 'PT Sans', sans-serif;
     --fuenteParrafos: 'Open Sans', sans-serif;
-    --primario: #ca7d5e;
+    --primario: #5e80ca;
     --blanco: #fff;
     --negro: #000000;
     --gris: #e1e1e1;
@@ -37,4 +37,37 @@ a {
 h1, h2, h3, h4 {
     font-family: var(--fuenteHeading);
     text-align: center;
+}
+
+
+/** tablero */
+@media (max-width: 480px ) {
+    .tablero__casilla{
+        max-width:3rem;
+        max-height: 3rem;
+        
+    }
+    .tablero{
+        display: grid;
+        gap: 3rem;
+    }
+}
+.tablero{
+    display: grid;
+    grid-template-columns: repeat(6, minmax(2rem, 20rem));
+    background-color: var(--primario);
+    justify-items: center;
+    gap: 1rem;
+    border: 2px solid var(--negro);
+     padding: 0.5rem;  
+}
+
+.tablero__casilla{
+   /* clip-path: circle(50% at 50% 50%);*/
+    height: 5rem;
+    width: 5rem;
+    background-color: var(--blanco);
+    border-radius: 50%;
+    border-color: var(--negro);
+    border-style: solid;
 }
