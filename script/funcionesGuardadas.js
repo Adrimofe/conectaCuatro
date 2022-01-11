@@ -86,7 +86,56 @@ function compruebaElMayor(...vertical) {
 compruebaElMayor(verticalUno)
 
 
+function tirada(numeroMarcado, verticalEncontrada) {
+    
+    if (checkNumSelectedAndAcumulattorLikeZero(numeroMarcado)) {
+        setCssColorOfVerticalSelectedLikeTrue(verticalEncontrada, rojo, "rojo");
+    } else if (checkNumSelectedAndAcumulattorDistinctZero(numeroMarcado)) {
+        setCssColorOfVerticalSelectedLikeTrue(verticalEncontrada, amarillo, "amarillo");
+    }
 
+}
+
+
+function tirada(numeroMarcado) {
+    if (verticalUno.includes(parseInt(numeroMarcado))) {
+        if (checkNumSelectedAndAcumulattorLikeZero(numeroMarcado)) {
+            setCssColorOfVerticalSelectedLikeTrue(verticalUno, rojo, "rojo");
+        } else if (checkNumSelectedAndAcumulattorDistinctZero(numeroMarcado)) {
+            setCssColorOfVerticalSelectedLikeTrue(verticalUno, amarillo, "amarillo");
+        }
+    } else if (verticalDos.includes(parseInt(numeroMarcado))) {
+        if (checkNumSelectedAndAcumulattorLikeZero(numeroMarcado)) {
+            setCssColorOfVerticalSelectedLikeTrue(verticalDos, rojo, "rojo");
+        } else if (checkNumSelectedAndAcumulattorDistinctZero(numeroMarcado)) {
+            setCssColorOfVerticalSelectedLikeTrue(verticalDos, amarillo, "amarillo");
+        }
+    } else if (verticalTres.includes(parseInt(numeroMarcado))) {
+        if (checkNumSelectedAndAcumulattorLikeZero(numeroMarcado)) {
+            setCssColorOfVerticalSelectedLikeTrue(verticalTres, rojo, "rojo");
+        } else if (checkNumSelectedAndAcumulattorDistinctZero(numeroMarcado)) {
+            setCssColorOfVerticalSelectedLikeTrue(verticalTres, amarillo, "amarillo");
+        }
+    } else if (verticalCuatro.includes(parseInt(numeroMarcado))) {
+        if (checkNumSelectedAndAcumulattorLikeZero(numeroMarcado)) {
+            setCssColorOfVerticalSelectedLikeTrue(verticalCuatro, rojo, "rojo");
+        } else if (checkNumSelectedAndAcumulattorDistinctZero(numeroMarcado)) {
+            setCssColorOfVerticalSelectedLikeTrue(verticalCuatro, amarillo, "amarillo");
+        }
+    } else if (verticalCinco.includes(parseInt(numeroMarcado))) {
+        if (checkNumSelectedAndAcumulattorLikeZero(numeroMarcado)) {
+            setCssColorOfVerticalSelectedLikeTrue(verticalCinco, rojo, "rojo");
+        } else if (checkNumSelectedAndAcumulattorDistinctZero(numeroMarcado)) {
+            setCssColorOfVerticalSelectedLikeTrue(verticalCinco, amarillo, "amarillo");
+        }
+    } else if (verticalSeis.includes(parseInt(numeroMarcado))) {
+        if (checkNumSelectedAndAcumulattorLikeZero(numeroMarcado)) {
+            setCssColorOfVerticalSelectedLikeTrue(verticalSeis, rojo, "rojo");
+        } else if (checkNumSelectedAndAcumulattorDistinctZero(numeroMarcado)) {
+            setCssColorOfVerticalSelectedLikeTrue(verticalSeis, amarillo, "amarillo");
+        }
+    }
+}
 
 for (let index = 0; index < fichas.length; index++) {
     const element = fichas[index];

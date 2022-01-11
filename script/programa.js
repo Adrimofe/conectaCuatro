@@ -50,82 +50,64 @@ class ficha {
 for (let index = 0; index < 42; index++) {
     conjuntoFichas.push(new ficha(index));
 }
-
+let verticalEncontrada = 0;
 for (let index = 0; index < fichas.length; index++) {
     const element = fichas[index];
     element.addEventListener('click', (e) => {
-        tirada(e.target.dataset.casillaNum, e);
+        verticalEncontrada = checkVerticalContainsSelectedNum(e.target.dataset.casillaNum);
+        tirada(e.target.dataset.casillaNum,  verticalEncontrada);
         acumulador++;
     })
 }
-
-function tirada(numeroMarcado) {
-    if (verticalUno.includes(parseInt(numeroMarcado))) {
-        if (!conjuntoFichas[numeroMarcado].activo && acumulador % 2 == ZERO) {
-            document.getElementById('casilla' + compruebaElMayor(verticalUno)).style.cssText = rojo;
-            conjuntoFichas[compruebaElMayor(verticalUno)].activo = true;
-        } else if (!conjuntoFichas[numeroMarcado].activo && !acumulador % 2 == ZERO) {
-            document.getElementById('casilla' + compruebaElMayor(verticalUno)).style.cssText = amarillo;
-            conjuntoFichas[compruebaElMayor(verticalUno)].activo = true;
+function checkVerticalContainsSelectedNum(numeroMarcado){
+        if (verticalUno.includes(parseInt(numeroMarcado))){
+            return verticalUno;
         }
-
-    } else if (verticalDos.includes(parseInt(numeroMarcado))) {
-
-        if (!conjuntoFichas[numeroMarcado].activo && acumulador % 2 == ZERO) {
-            document.getElementById('casilla' + compruebaElMayor(verticalDos)).style.cssText = rojo;
-            conjuntoFichas[compruebaElMayor(verticalDos)].activo = true;
-            conjuntoFichas[compruebaElMayor(verticalCinco)].color = "rojo";
-        } else if (!conjuntoFichas[numeroMarcado].activo && !acumulador % 2 == ZERO) {
-            document.getElementById('casilla' + compruebaElMayor(verticalDos)).style.cssText = amarillo;
-            conjuntoFichas[compruebaElMayor(verticalDos)].activo = true;
-            conjuntoFichas[compruebaElMayor(verticalCinco)].color = "amarillo";
+        if (verticalDos.includes(parseInt(numeroMarcado))){
+            return verticalDos;
         }
-
-    } else if (verticalTres.includes(parseInt(numeroMarcado))) {
-
-        if (!conjuntoFichas[numeroMarcado].activo && acumulador % 2 == ZERO) {
-            document.getElementById('casilla' + compruebaElMayor(verticalTres)).style.cssText = rojo;
-            conjuntoFichas[compruebaElMayor(verticalTres)].activo = true;
-            conjuntoFichas[compruebaElMayor(verticalCinco)].color = "rojo";
-        } else if (!conjuntoFichas[numeroMarcado].activo && !acumulador % 2 == ZERO) {
-            document.getElementById('casilla' + compruebaElMayor(verticalTres)).style.cssText = amarillo;
-            conjuntoFichas[compruebaElMayor(verticalTres)].activo = true;
-            conjuntoFichas[compruebaElMayor(verticalCinco)].color = "amarillo";
+        if (verticalTres.includes(parseInt(numeroMarcado))){
+            return verticalTres;
         }
-    } else if (verticalCuatro.includes(parseInt(numeroMarcado))) {
-        if (!conjuntoFichas[numeroMarcado].activo && acumulador % 2 == ZERO) {
-            document.getElementById('casilla' + compruebaElMayor(verticalCuatro)).style.cssText = rojo;
-            conjuntoFichas[compruebaElMayor(verticalCuatro)].activo = true;
-            conjuntoFichas[compruebaElMayor(verticalCinco)].color = "rojo";
-        } else if (!conjuntoFichas[numeroMarcado].activo && !acumulador % 2 == ZERO) {
-            document.getElementById('casilla' + compruebaElMayor(verticalCuatro)).style.cssText = amarillo;
-            conjuntoFichas[compruebaElMayor(verticalCuatro)].activo = true;
-            conjuntoFichas[compruebaElMayor(verticalCinco)].color = "amarillo";
+        if (verticalCuatro.includes(parseInt(numeroMarcado))){
+            return verticalCuatro;
         }
-
-    } else if (verticalCinco.includes(parseInt(numeroMarcado))) {
-        if (!conjuntoFichas[numeroMarcado].activo && acumulador % 2 == ZERO) {
-            document.getElementById('casilla' + compruebaElMayor(verticalCinco)).style.cssText = rojo;
-            conjuntoFichas[compruebaElMayor(verticalCinco)].activo = true;
-            conjuntoFichas[compruebaElMayor(verticalCinco)].color = "rojo";
-        } else if (!conjuntoFichas[numeroMarcado].activo && !acumulador % 2 == ZERO) {
-            document.getElementById('casilla' + compruebaElMayor(verticalCinco)).style.cssText = amarillo;
-            conjuntoFichas[compruebaElMayor(verticalCinco)].activo = true;
-            conjuntoFichas[compruebaElMayor(verticalCinco)].color = "amarillo";
+        if (verticalCinco.includes(parseInt(numeroMarcado))){
+            return verticalCinco;
         }
-    } else if (verticalSeis.includes(parseInt(numeroMarcado))) {
-        if (!conjuntoFichas[numeroMarcado].activo && acumulador % 2 == ZERO) {
-            document.getElementById('casilla' + compruebaElMayor(verticalSeis)).style.cssText = rojo;
-            conjuntoFichas[compruebaElMayor(verticalSeis)].activo = true;
-            conjuntoFichas[compruebaElMayor(verticalCinco)].color = "rojo";
-        } else if (!conjuntoFichas[numeroMarcado].activo && !acumulador % 2 == ZERO) {
-            document.getElementById('casilla' + compruebaElMayor(verticalSeis)).style.cssText = amarillo;
-            conjuntoFichas[compruebaElMayor(verticalSeis)].activo = true;
-            conjuntoFichas[compruebaElMayor(verticalCinco)].color = "amarillo";
+        if (verticalSeis.includes(parseInt(numeroMarcado))){
+            return verticalSeis;
         }
-    }
+}
+/** La función cheque si el número marcado está activo: true y si el resto del acumulador es igual a 0 */
+function checkNumSelectedAndAcumulattorLikeZero(numeroMarcado) {
+    return (!conjuntoFichas[numeroMarcado].activo && acumulador % 2 == ZERO);
+}
+/** La función cheque si el número marcado está activo: true y si el resto del acumulador es distinto a 0 */
+function checkNumSelectedAndAcumulattorDistinctZero(numeroMarcado) {
+    return (!conjuntoFichas[numeroMarcado].activo && !acumulador % 2 == ZERO);
 }
 
+function setCssColorOfVerticalSelectedLikeTrue(vertical, color, colorText) {
+    document.getElementById('casilla' + compruebaElMayor(vertical)).style.cssText = color;
+    conjuntoFichas[compruebaElMayor(vertical)].activo = true;
+    conjuntoFichas[compruebaElMayor(vertical)].color = colorText;
+}
+function tirada(numeroMarcado, verticalEncontrada) {
+    if (checkNumSelectedAndAcumulattorLikeZero(numeroMarcado)) {
+        setCssColorOfVerticalSelectedLikeTrue(verticalEncontrada, rojo, "rojo");
+    } else if (checkNumSelectedAndAcumulattorDistinctZero(numeroMarcado)) {
+        setCssColorOfVerticalSelectedLikeTrue(verticalEncontrada, amarillo, "amarillo");
+    }
+}
+/** La función recibe el número de casilla marcado que está
+ * almacenado en los arrays ordenados pro verticales.
+ * Comprueba la casilla mayor que sea false, las añade a un array.
+ *  Mediante Math.max
+ * comprobamos cual es el número mayor de ese array, 
+ * así sabremos que casilla es la que hay que marcar
+ * sin que tenga espacios en blanco o vacíos por debajo.
+ */
 function compruebaElMayor(vertical) {
     let numerosFalsos = [];
     for (let i = 0; i < vertical.length; i++) {
@@ -137,7 +119,7 @@ function compruebaElMayor(vertical) {
     return Math.max(...numerosFalsos);
 }
 
-function compruebaGanador(numeroMarcado){
+function compruebaGanador(numeroMarcado) {
     // como comprobar si hay un ganador
 
 }

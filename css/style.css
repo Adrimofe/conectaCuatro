@@ -24,6 +24,8 @@ body {
 }
 p{
     text-align: center;
+    margin: 0;
+    padding: 0;
 }
 /** GLOBALES **/
 
@@ -40,6 +42,9 @@ a {
 h1, h2, h3, h4 {
     font-family: var(--fuenteHeading);
     text-align: center;
+    margin: 0;
+    padding: 0;
+    line-height: 2.5rem;
 }
 
 
