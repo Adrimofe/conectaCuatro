@@ -55,32 +55,33 @@ for (let index = 0; index < fichas.length; index++) {
     const element = fichas[index];
     element.addEventListener('click', (e) => {
         verticalEncontrada = checkVerticalContainsSelectedNum(e.target.dataset.casillaNum);
-        tirada(e.target.dataset.casillaNum,  verticalEncontrada);
+        tirada(e.target.dataset.casillaNum, verticalEncontrada);
         acumulador++;
     })
 }
-function checkVerticalContainsSelectedNum(numeroMarcado){
-        if (verticalUno.includes(parseInt(numeroMarcado))){
-            return verticalUno;
-        }
-        if (verticalDos.includes(parseInt(numeroMarcado))){
-            return verticalDos;
-        }
-        if (verticalTres.includes(parseInt(numeroMarcado))){
-            return verticalTres;
-        }
-        if (verticalCuatro.includes(parseInt(numeroMarcado))){
-            return verticalCuatro;
-        }
-        if (verticalCinco.includes(parseInt(numeroMarcado))){
-            return verticalCinco;
-        }
-        if (verticalSeis.includes(parseInt(numeroMarcado))){
-            return verticalSeis;
-        }
+function checkVerticalContainsSelectedNum(numeroMarcado) {
+    if (verticalUno.includes(parseInt(numeroMarcado))) {
+        return verticalUno;
+    }
+    if (verticalDos.includes(parseInt(numeroMarcado))) {
+        return verticalDos;
+    }
+    if (verticalTres.includes(parseInt(numeroMarcado))) {
+        return verticalTres;
+    }
+    if (verticalCuatro.includes(parseInt(numeroMarcado))) {
+        return verticalCuatro;
+    }
+    if (verticalCinco.includes(parseInt(numeroMarcado))) {
+        return verticalCinco;
+    }
+    if (verticalSeis.includes(parseInt(numeroMarcado))) {
+        return verticalSeis;
+    }
 }
 /** La función cheque si el número marcado está activo: true y si el resto del acumulador es igual a 0 */
 function checkNumSelectedAndAcumulattorLikeZero(numeroMarcado) {
+
     return (!conjuntoFichas[numeroMarcado].activo && acumulador % 2 == ZERO);
 }
 /** La función cheque si el número marcado está activo: true y si el resto del acumulador es distinto a 0 */
@@ -89,15 +90,23 @@ function checkNumSelectedAndAcumulattorDistinctZero(numeroMarcado) {
 }
 
 function setCssColorOfVerticalSelectedLikeTrue(vertical, color, colorText) {
+    console.log(compruebaElMayor(vertical))
     document.getElementById('casilla' + compruebaElMayor(vertical)).style.cssText = color;
-    conjuntoFichas[compruebaElMayor(vertical)].activo = true;
     conjuntoFichas[compruebaElMayor(vertical)].color = colorText;
+    conjuntoFichas[compruebaElMayor(vertical)].activo = true;
+
+
 }
 function tirada(numeroMarcado, verticalEncontrada) {
+
     if (checkNumSelectedAndAcumulattorLikeZero(numeroMarcado)) {
+
         setCssColorOfVerticalSelectedLikeTrue(verticalEncontrada, rojo, "rojo");
+        compruebaGanador(compruebaElMayor(verticalEncontrada));
     } else if (checkNumSelectedAndAcumulattorDistinctZero(numeroMarcado)) {
+
         setCssColorOfVerticalSelectedLikeTrue(verticalEncontrada, amarillo, "amarillo");
+        compruebaGanador(compruebaElMayor(verticalEncontrada));
     }
 }
 /** La función recibe el número de casilla marcado que está
@@ -120,6 +129,45 @@ function compruebaElMayor(vertical) {
 }
 
 function compruebaGanador(numeroMarcado) {
-    // como comprobar si hay un ganador
+    console.log(numeroMarcado)
+    let verticalRecibida = checkVerticalContainsSelectedNum(numeroMarcado);
+    let acumuladorRojos = 0;
+    let arrayRojos = [];
+    let arrayAmarillos = [];
+    let acumuladorAmarillos = 0;
+    for (let i = 0; i < verticalRecibida.length; i++) {
+        const e = verticalRecibida[i];
+        if (conjuntoFichas[e].activo && conjuntoFichas[e].color == "rojo") {
+            acumuladorRojos++;
+            arrayRojos.push(conjuntoFichas[e].numero);
+            console.log(arrayRojos)
+        } if (conjuntoFichas[e].activo && conjuntoFichas[e].color == "amarillo") {
+            acumuladorAmarillos++;
+            arrayAmarillos.push(conjuntoFichas[e].numero);
+        }
+    }
+    if (acumuladorRojos >= 4) {
+        console.log("asi es 4 rojos y ganaste");
+        compruebaGanadorVertical(arrayRojos);
+    }
+    if (acumuladorAmarillos == 4) {
+        console.log("asi es amarillo");
+        compruebaGanadorVertical(arrayAmarillos);
+    }
 
+}
+
+function compruebaGanadorVertical(arrayVertical) {
+    console.log(arrayVertical[0])
+    console.log(arrayVertical[0] - 6)
+
+    if (arrayVertical[1] == arrayVertical[0] + 6 &&
+        arrayVertical[2] == arrayVertical[0] + 12 &&
+        arrayVertical[3] == arrayVertical[0] + 18
+    ) {
+        document.getElementById('casilla' + arrayVertical[0]).style.cssText = "background-color: #00BB2D";
+        document.getElementById('casilla' + arrayVertical[1]).style.cssText = "background-color: #00BB2D";
+        document.getElementById('casilla' + arrayVertical[2]).style.cssText = "background-color: #00BB2D";
+        document.getElementById('casilla' + arrayVertical[3]).style.cssText = "background-color: #00BB2D";
+    }
 }

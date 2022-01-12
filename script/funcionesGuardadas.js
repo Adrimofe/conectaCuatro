@@ -154,3 +154,74 @@ for (let index = 0; index < fichas.length; index++) {
         }
     })
 }
+
+
+if ((conjuntoFichas[36].activo == true &&
+    conjuntoFichas[30].activo == true &&
+    conjuntoFichas[24].activo == true &&
+    conjuntoFichas[18].activo == true)
+    &&
+    conjuntoFichas[36].color === "rojo" &&
+    conjuntoFichas[30].color === "rojo" &&
+    conjuntoFichas[24].color == "rojo" &&
+    conjuntoFichas[18].color === "rojo") {
+
+    console.log("ganaste");
+
+}
+if ((conjuntoFichas[(parseInt(numeroMarcado) + 6)].activo == true&&
+conjuntoFichas[(parseInt(numeroMarcado) + 12)].activo == true &&
+conjuntoFichas[(parseInt(numeroMarcado) + 18)].activo == true &&
+conjuntoFichas[(parseInt(numeroMarcado) + 24)].activo == true)
+&& conjuntoFichas[(parseInt(numeroMarcado) + 6)].color === "rojo" &&
+conjuntoFichas[(parseInt(numeroMarcado) + 12)].color === "rojo" &&
+conjuntoFichas[(parseInt(numeroMarcado) + 18)].color === "rojo" &&
+conjuntoFichas[(parseInt(numeroMarcado) + 24)].color == "rojo") {
+
+console.log("ganaste");
+
+}
+
+
+function compruebaVerticalGanadora(vertical){
+    for (let i = 0; i < conjuntoFichas.length; i++) {
+        const element = conjuntoFichas[i];
+        for (let j = 0; j < vertical.length; j++) {
+            const verticalJ = vertical[j];
+            if(verticalJ==element.numero){
+                console.log("si")
+                if(element.activo && element.color == "rojo"){
+                    console.log("na")
+                }
+            }
+        }
+    }
+}
+
+compruebaVerticalGanadora(verticalUno);
+
+function compruebaGanador(numeroMarcado) {
+    console.log(numeroMarcado)
+    let verticalRecibida = checkVerticalContainsSelectedNum(numeroMarcado);
+    let acumuladorRojos = 0;
+    let acumuladorAmarillos = 0;
+    console.log(acumuladorRojos)
+    console.log(verticalRecibida)
+    for (let i = 0; i < verticalRecibida.length; i++) {
+        const e = verticalRecibida[i];
+        if (conjuntoFichas[e].activo && conjuntoFichas[e].color == "rojo") {
+            acumuladorRojos++;
+        } if (conjuntoFichas[e].activo && conjuntoFichas[e].color == "amarillo") { 
+            acumuladorAmarillos++;
+        }
+
+    }
+    if (acumuladorRojos == 4) {
+        console.log("asi es 4 rojos y ganaste");
+        alert("ganaste")
+    }
+    if(acumuladorAmarillos == 4){
+        console.log("asi es amarillo");
+        alert("ganaste")
+    }
+}
